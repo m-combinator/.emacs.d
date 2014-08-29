@@ -7,6 +7,7 @@
 
 (setq my-packages '(cider
 		    buffer-move
+		    persistent-soft
 		    ido-better-flex
 		    ido-load-library
 		    ido-select-window

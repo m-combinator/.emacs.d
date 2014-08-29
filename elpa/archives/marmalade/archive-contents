@@ -1,4 +1,7 @@
 (1
+ (fixme-mode .
+	     [(1 0 1)
+	      nil "fixme minor mode to highlight warning words" single])
  (zone-matrix .
 	      [(0 0 1)
 	       nil "Matrix themed Zone mode" tar])
