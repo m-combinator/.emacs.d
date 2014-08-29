@@ -1,0 +1,34 @@
+(ns hello-world.core
+  (:require [ring.adapter.jetty :as jet :refer [run-jetty]]
+            [ring.util.response :as res :refer [response status content-type]]
+            [ring.middleware.reload :as r :refer [wrap-reload]]
+            [ring.middleware.session :as sess :refer [wrap-session]]
+            [ring.middleware.params :as params :refer [wrap-params]]
+            [ring.middleware.multipart-params :as multi
+             :refer [wrap-multipart-params]]))
+
+(defn handler
+  [{{name "name"} :form-params :as params}](->(res/response (page name))(res/content-type "text/html")))
+
+
+(defn page [name]
+  (str "<html>"
+       "<body>"
+       (if name
+         (str "<p><strong>Hello, " name "</strong></p>")
+         (str "<form method='post' enctype='multipart/form-data'>"
+              "<input name='name' type='text' placeholder='Enter your name'>"
+              "</br>"
+              ;;"<input name='file' type='file'>"
+              ;;"</br>"
+              "<input type='submit' value='Enter name'>"
+              "</form>"))
+       "</body>"
+       "</html>"))
+
+(def app (-> handler
+             multi/wrap-multipart-params
+             r/wrap-reload))
+
+(defonce server  
+  (jet/run-jetty #'app {:port 3000 :join? false}))
