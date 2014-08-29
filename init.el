@@ -70,6 +70,7 @@
 					(paredit-mode t)))
 
 (add-hook 'scheme-mode-hook (lambda ()
+			      (local-set-key (kbd "RET") 'newline-and-indent)
 			      (pretty-lambda-mode t)
 			      (paredit-mode t)))
 
