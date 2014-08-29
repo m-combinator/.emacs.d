@@ -60,6 +60,7 @@
 			     (paredit-mode t)))
 
 (add-hook 'lisp-mode-hook  (lambda ()
+			     (local-set-key (kbd "RET") 'newline-and-indent)
 			     (pretty-lambda-mode t)
 			     (paredit-mode t)))
 
@@ -82,10 +83,6 @@
  (add-hook 'clojure-mode-hook (lambda ()
 				(local-set-key (kbd "RET") 'newline-and-indent)
 				(paredit-mode t))))
-
-
-(add-hook 'lisp-mode-hook (lambda ()
-			    (local-set-key (kbd "RET") 'newline-and-indent)))
 
 
 ;;taken from Raynes' repo
