@@ -92,6 +92,7 @@
      (setq clojure-mode-use-backtracking-indent t)
      (add-hook 'clojure-mode-hook
                (lambda ()
+		 (paredit-mode t)
 		 (local-set-key (kbd "RET") 'newline-and-indent)
                  (put-clojure-indent 'fact 'defun)
                  (put-clojure-indent 'prepend 'defun)
