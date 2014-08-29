@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (ido-better-flex/match ido-better-flex/score ido-better-flex/disable
 ;;;;;;  ido-better-flex/enable) "ido-better-flex" "ido-better-flex.el"
-;;;;;;  (21502 28369))
+;;;;;;  (21504 55197))
 ;;; Generated autoloads from ido-better-flex.el
 
 (autoload 'ido-better-flex/enable "ido-better-flex" "\
@@ -35,8 +35,8 @@ An advice using `ido-better-flex' for IDO matching." (setq ad-return-value (ido-
 
 ;;;***
 
-;;;### (autoloads nil nil ("ido-better-flex-pkg.el") (21502 28369
-;;;;;;  422000))
+;;;### (autoloads nil nil ("ido-better-flex-pkg.el") (21504 55197
+;;;;;;  580000))
 
 ;;;***
 

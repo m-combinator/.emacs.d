@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads (paredit-mode) "paredit" "paredit.el" (21502 21784))
+;;;### (autoloads (paredit-mode) "paredit" "paredit.el" (21504 55238))
 ;;; Generated autoloads from paredit.el
 
 (autoload 'paredit-mode "paredit" "\
@@ -19,7 +19,7 @@ Paredit behaves badly if parentheses are unbalanced, so exercise
 
 ;;;***
 
-;;;### (autoloads nil nil ("paredit-pkg.el") (21502 21784 834000))
+;;;### (autoloads nil nil ("paredit-pkg.el") (21504 55238 198000))
 
 ;;;***
 

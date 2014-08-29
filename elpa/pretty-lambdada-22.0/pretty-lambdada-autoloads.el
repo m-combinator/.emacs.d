@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (global-pretty-lambda-mode pretty-lambda-mode pretty-lambda-for-modes
 ;;;;;;  pretty-lambda-auto-modes pretty-lambda) "pretty-lambdada"
-;;;;;;  "pretty-lambdada.el" (21503 33474))
+;;;;;;  "pretty-lambdada.el" (21504 55243))
 ;;; Generated autoloads from pretty-lambdada.el
 
 (let ((loads (get 'pretty-lambda 'custom-loads))) (if (member '"pretty-lambdada" loads) nil (put 'pretty-lambda 'custom-loads (cons '"pretty-lambdada" loads))))
@@ -50,8 +50,8 @@ See `pretty-lambda-mode' for more information on Pretty-Lambda mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("pretty-lambdada-pkg.el") (21503 33474
-;;;;;;  230000))
+;;;### (autoloads nil nil ("pretty-lambdada-pkg.el") (21504 55243
+;;;;;;  341000))
 
 ;;;***
 

@@ -4,15 +4,15 @@
 
 
 ;;;### (autoloads nil "bubbleberry-theme" "bubbleberry-theme.el"
-;;;;;;  (21502 20114))
+;;;;;;  (21504 55252))
 ;;; Generated autoloads from bubbleberry-theme.el
 
 (when load-file-name (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
 
 ;;;***
 
-;;;### (autoloads nil nil ("bubbleberry-theme-pkg.el") (21502 20114
-;;;;;;  889000))
+;;;### (autoloads nil nil ("bubbleberry-theme-pkg.el") (21504 55252
+;;;;;;  901000))
 
 ;;;***
 

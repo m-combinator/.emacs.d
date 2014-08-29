@@ -3,16 +3,16 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "assemblage-theme" "assemblage-theme.el" (21502
-;;;;;;  26590))
+;;;### (autoloads nil "assemblage-theme" "assemblage-theme.el" (21504
+;;;;;;  55263))
 ;;; Generated autoloads from assemblage-theme.el
 
 (when load-file-name (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
 
 ;;;***
 
-;;;### (autoloads nil nil ("assemblage-theme-pkg.el") (21502 26590
-;;;;;;  937000))
+;;;### (autoloads nil nil ("assemblage-theme-pkg.el") (21504 55263
+;;;;;;  277000))
 
 ;;;***
 

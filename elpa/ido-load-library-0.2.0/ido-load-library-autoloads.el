@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ido-load-library-find ido-load-library ido-load-library)
-;;;;;;  "ido-load-library" "ido-load-library.el" (21502 28368))
+;;;;;;  "ido-load-library" "ido-load-library.el" (21504 55217))
 ;;; Generated autoloads from ido-load-library.el
 
 (let ((loads (get 'ido-load-library 'custom-loads))) (if (member '"ido-load-library" loads) nil (put 'ido-load-library 'custom-loads (cons '"ido-load-library" loads))))
@@ -35,8 +35,8 @@ universal prefix argument.
 
 ;;;***
 
-;;;### (autoloads nil nil ("ido-load-library-pkg.el") (21502 28368
-;;;;;;  957000))
+;;;### (autoloads nil nil ("ido-load-library-pkg.el") (21504 55217
+;;;;;;  238000))
 
 ;;;***
 

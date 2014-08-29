@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ido-select-window) "ido-select-window" "ido-select-window.el"
-;;;;;;  (21502 28366))
+;;;;;;  (21504 55222))
 ;;; Generated autoloads from ido-select-window.el
 
 (autoload 'ido-select-window "ido-select-window" "\
@@ -17,8 +17,8 @@ selected window is excluded from the list of windows.
 
 ;;;***
 
-;;;### (autoloads nil nil ("ido-select-window-pkg.el") (21502 28366
-;;;;;;  168000))
+;;;### (autoloads nil nil ("ido-select-window-pkg.el") (21504 55222
+;;;;;;  43000))
 
 ;;;***
 

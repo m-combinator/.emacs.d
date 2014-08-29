@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ido-yes-or-no-mode) "ido-yes-or-no" "ido-yes-or-no.el"
-;;;;;;  (21502 28363))
+;;;;;;  (21504 55232))
 ;;; Generated autoloads from ido-yes-or-no.el
 
 (defvar ido-yes-or-no-mode nil "\
@@ -20,7 +20,7 @@ Use ido for `yes-or-no-p'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("ido-yes-or-no-pkg.el") (21502 28363 580000))
+;;;### (autoloads nil nil ("ido-yes-or-no-pkg.el") (21504 55232 98000))
 
 ;;;***
 

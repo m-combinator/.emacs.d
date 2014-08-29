@@ -5,78 +5,89 @@
 (package-initialize)
 
 
-(unless (package-installed-p 'cider)
-  (package-install 'cider))
+(setq my-packages '(cider
+		    buffer-move
+		    ido-better-flex
+		    ido-load-library
+		    ido-select-window
+		    ido-ubiquitous
+		    ido-yes-or-no
+		    paredit
+		    pretty-lambdada
+		    rainbow-delimiters
+		    bubbleberry-theme
+		    color-theme
+		    assemblage-theme
+		    zenburn-theme))
+
+(dolist (package my-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 
 ;; default buffer is *scratch*
 (setq initial-buffer-choice t)
 
 
-;;Some key bindings to make things easier for me
+;;Some global key bindings to make things easier for me
 (global-set-key (kbd "C-x p") 'list-packages)
 (global-set-key (kbd "C-c r") 'package-refresh-contents)
+(global-set-key (kbd "C-x <left>") 'buf-mov-left)
+(global-set-key (kbd "C-x <right>") 'buf-mov-right)
+(global-set-key (kbd "C-x <up>") 'buf-mov-up)
+(global-set-key (kbd "C-x <down>") 'buf-mov-down)
 
 
-;; Set font
-;(set-face-attribute 'default nil :font "Source Code Pro-13")
-
+;; I don't know how to do multiline comments in emacs, boo
 (defmacro comment (&rest code)
   "comment macro similar to clojure's comment macro"
   nil)
 
 
-;;enable paredit mode for lisp modes
+;;Some hooks
 
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-				  (progn
-				    (local-set-key (kbd "RET") 'newline-and-indent)
-				    (pretty-lambda-mode t)
-				    (paredit-mode t))))
+				  (local-set-key (kbd "RET") 'newline-and-indent)
+				  (pretty-lambda-mode t)
+				  (paredit-mode t)))
 
 (add-hook 'eval-expression-minibuffer-setup-hook  (lambda ()
-						    (progn
-						      (pretty-lambda-mode t)
-						      (paredit-mode t))))
+						    (pretty-lambda-mode t)
+						    (paredit-mode t)))
 (add-hook 'ielm-mode-hook  (lambda ()
-			     (progn
-			       (pretty-lambda-mode t)
-			       (paredit-mode t))))
+			     (pretty-lambda-mode t)
+			     (paredit-mode t)))
 
 (add-hook 'lisp-mode-hook  (lambda ()
-			     (progn
-			       (pretty-lambda-mode t)
-			       (paredit-mode t))))
+			     (pretty-lambda-mode t)
+			     (paredit-mode t)))
 
 (add-hook 'lisp-interaction-mode-hook (lambda ()
-					(progn
-					  (local-set-key (kbd "RET") 'newline-and-indent)
-					  (pretty-lambda-mode t)
-					  (paredit-mode t))))
-	  
+					(local-set-key (kbd "RET") 'newline-and-indent)
+					(pretty-lambda-mode t)
+					(paredit-mode t)))
+
 (add-hook 'scheme-mode-hook (lambda ()
-			      (progn
-				(pretty-lambda-mode t)
-				(paredit-mode t))))
+			      (pretty-lambda-mode t)
+			      (paredit-mode t)))
 
 
 (comment
  (add-hook 'cider-repl-mode-hook (lambda ()
-				   (progn
-				     (pretty-lambda-mode t)
-				     (paredit-mode t)))))
+				   (pretty-lambda-mode t)
+				   (paredit-mode t))))
 
 (comment
  (add-hook 'clojure-mode-hook (lambda ()
-				(progn
-				  (local-set-key (kbd "RET") 'newline-and-indent)
-				  (paredit-mode t)))))
+				(local-set-key (kbd "RET") 'newline-and-indent)
+				(paredit-mode t))))
 
 
 (add-hook 'lisp-mode-hook (lambda ()
 			    (local-set-key (kbd "RET") 'newline-and-indent)))
 
 
+;;taken from Raynes' repo
 (eval-after-load 'clojure-mode
   '(progn
      (setq clojure-mode-use-backtracking-indent t)
@@ -88,6 +99,7 @@
                  (put-clojure-indent 'when-short 'defun)))))
 
 
+;;also taken from Raynes' repo
 (eval-after-load 'clojure-mode
   '(font-lock-add-keywords
     'clojure-mode
@@ -102,6 +114,7 @@
           (lambda ()
             (set-syntax-table clojure-mode-syntax-table)
             (setq lisp-indent-function 'clojure-indent-function)))
+
 (setq cider-repl-popup-stacktraces t)
 (setq cider-repl-print-length 100)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
@@ -146,9 +159,10 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 
+;;turn on line numbers
 (global-linum-mode t)
-					;(rainbow-delimiters-mode t)
 
+;;those look nasty, so let's remove em
 (when window-system
   (scroll-bar-mode -1)
   (tool-bar-mode -1))

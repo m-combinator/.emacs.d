@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (global-rainbow-delimiters-mode rainbow-delimiters-mode-enable
 ;;;;;;  rainbow-delimiters-mode) "rainbow-delimiters" "rainbow-delimiters.el"
-;;;;;;  (21502 26272))
+;;;;;;  (21504 55248))
 ;;; Generated autoloads from rainbow-delimiters.el
 
 (autoload 'rainbow-delimiters-mode "rainbow-delimiters" "\
@@ -41,8 +41,8 @@ See `rainbow-delimiters-mode' for more information on Rainbow-Delimiters mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("rainbow-delimiters-pkg.el") (21502 26272
-;;;;;;  505000))
+;;;### (autoloads nil nil ("rainbow-delimiters-pkg.el") (21504 55248
+;;;;;;  128000))
 
 ;;;***
 

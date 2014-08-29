@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "cl-lib" "cl-lib.el" (21502 18316))
+;;;### (autoloads nil "cl-lib" "cl-lib.el" (21504 55670))
 ;;; Generated autoloads from cl-lib.el
  (let ((d (file-name-directory #$)))
   (when (member d load-path)
@@ -11,7 +11,7 @@
 
 ;;;***
 
-;;;### (autoloads nil nil ("cl-lib-pkg.el") (21502 18316 457000))
+;;;### (autoloads nil nil ("cl-lib-pkg.el") (21504 55670 49000))
 
 ;;;***
 
