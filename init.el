@@ -5,6 +5,8 @@
 (package-initialize)
 
 
+
+
 (setq my-packages '(cider
 		    buffer-move
 		    persistent-soft
@@ -19,7 +21,9 @@
 		    bubbleberry-theme
 		    color-theme
 		    assemblage-theme
-		    zenburn-theme))
+		    zenburn-theme
+		    php-mode
+		    python-mode))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
@@ -30,14 +34,22 @@
 (setq initial-buffer-choice t)
 
 
-;;Some global key bindings to make things easier for me
-(global-set-key (kbd "C-x p") 'list-packages)
-(global-set-key (kbd "C-c r") 'package-refresh-contents)
-(global-set-key (kbd "C-x <left>") 'buf-mov-left)
-(global-set-key (kbd "C-x <right>") 'buf-mov-right)
-(global-set-key (kbd "C-x <up>") 'buf-mov-up)
-(global-set-key (kbd "C-x <down>") 'buf-mov-down)
 
+(require 'buffer-move)
+
+;;Some global key bindings to make things easier for me
+(global-set-key (kbd "C-c p") 'list-packages)
+(global-set-key (kbd "C-c r") 'package-refresh-contents)
+(global-set-key (kbd "C-c <left>") 'buf-move-left)
+(global-set-key (kbd "C-c <right>") 'buf-move-right)
+(global-set-key (kbd "C-c <up>") 'buf-move-up)
+(global-set-key (kbd "C-c <down>") 'buf-move-down)
+
+
+
+(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
 
 ;; I don't know how to do multiline comments in emacs, boo
 (defmacro comment (&rest code)
@@ -45,7 +57,13 @@
   nil)
 
 
+;; so the cider repl can start
+(setenv "PATH" (concat (getenv "PATH") ":C:/.lein/bin/"))
+(setq exec-path (append exec-path '("C:/.lein/bin/")))
+
 ;;Some hooks
+
+(show-paren-mode t)
 
 (add-hook 'emacs-lisp-mode-hook (lambda ()
 				  (local-set-key (kbd "RET") 'newline-and-indent)
@@ -74,32 +92,40 @@
 			      (pretty-lambda-mode t)
 			      (paredit-mode t)))
 
+(add-hook 'python-mode-hook (lambda ()
+			      (local-set-key (kbd "RET") 'newline-and-indent)
+			      (pretty-lambda-mode t)
+			      (paredit-mode t)))
 
-(comment
- (add-hook 'cider-repl-mode-hook (lambda ()
-				   (pretty-lambda-mode t)
-				   (paredit-mode t))))
-
-(comment
- (add-hook 'clojure-mode-hook (lambda ()
-				(local-set-key (kbd "RET") 'newline-and-indent)
-				(paredit-mode t))))
+(autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 
 
-;;taken from Raynes' repo
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-mode-hook
+          (lambda ()
+	    (local-set-key (kbd "RET") 'newline-and-indent)
+            (set-syntax-table clojure-mode-syntax-table)
+            (setq lisp-indent-function 'clojure-indent-function)))
+
+(setq cider-repl-popup-stacktraces t)
+(setq cider-repl-print-length 100)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+(eval-after-load 'php-mode
+  '(progn
+     (add-hook 'php-mode-hook (lambda ()
+				(paredit-mode t)
+				(local-set-key (kbd "RET") 'newline-and-indent)))))
+
 (eval-after-load 'clojure-mode
   '(progn
      (setq clojure-mode-use-backtracking-indent t)
      (add-hook 'clojure-mode-hook
                (lambda ()
 		 (paredit-mode t)
-		 (local-set-key (kbd "RET") 'newline-and-indent)
-                 (put-clojure-indent 'fact 'defun)
-                 (put-clojure-indent 'prepend 'defun)
-                 (put-clojure-indent 'when-short 'defun)))))
+		 (local-set-key (kbd "RET") 'newline-and-indent)))))
 
-
-;;also taken from Raynes' repo
 (eval-after-load 'clojure-mode
   '(font-lock-add-keywords
     'clojure-mode
@@ -109,29 +135,11 @@
                                  ,(make-char 'greek-iso8859-7 107))
                  nil))))))
 
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-(add-hook 'cider-mode-hook
-          (lambda ()
-            (set-syntax-table clojure-mode-syntax-table)
-            (setq lisp-indent-function 'clojure-indent-function)))
+;;disable vc-git
+(setq vc-handled-backends ())
+;(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
 
-(setq cider-repl-popup-stacktraces t)
-(setq cider-repl-print-length 100)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
-
-(comment
- ;;hooks for clojure mode
- (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
- (add-hook 'cider-repl-mode-hook 'subword-mode)
- (setq cider-repl-pop-to-buffer-on-connect t)
- (setq cider-popup-stacktraces t)
- (setq cider-repl-popup-stacktraces t)
- (setq cider-auto-select-error-buffer t)
- (setq cider-repl-history-file "~/.emacs.d/cider-history")
- (setq cider-repl-wrap-history t)
- (add-hook 'clojure-mode-hook 'subword-mode))
-
-
+(setq clojure-enable-paredit t)
 ;;set window to maximize
 (add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030)))
 
@@ -172,6 +180,7 @@
 
 
 ;;comment this out for now as I don't need it
+
 (comment
 
  (defun toggle-transparency ()
