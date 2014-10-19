@@ -101,16 +101,18 @@
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 
 
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-(add-hook 'cider-mode-hook
-          (lambda ()
-	    (local-set-key (kbd "RET") 'newline-and-indent)
-            (set-syntax-table clojure-mode-syntax-table)
-            (setq lisp-indent-function 'clojure-indent-function)))
+(comment
+ (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+ (add-hook 'cider-mode-hook
+	   (lambda ()
+	     
+	     (local-set-key (kbd "RET") 'newline-and-indent)
+	     (set-syntax-table clojure-mode-syntax-table)
+	     (setq lisp-indent-function 'clojure-indent-function)))
 
-(setq cider-repl-popup-stacktraces t)
-(setq cider-repl-print-length 100)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
+ (setq cider-repl-popup-stacktraces t)
+ (setq cider-repl-print-length 100)
+ (add-hook 'cider-repl-mode-hook 'paredit-mode))
 
 (eval-after-load 'php-mode
   '(progn
@@ -123,8 +125,12 @@
      (setq clojure-mode-use-backtracking-indent t)
      (add-hook 'clojure-mode-hook
                (lambda ()
+		 (show-paren-mode t)
 		 (paredit-mode t)
-		 (local-set-key (kbd "RET") 'newline-and-indent)))))
+		 (local-set-key (kbd "RET") 'newline-and-indent)
+		 (put-clojure-indent 'fact 'defun)
+                 (put-clojure-indent 'prepend 'defun)
+                 (put-clojure-indent 'when-short 'defun)))))
 
 (eval-after-load 'clojure-mode
   '(font-lock-add-keywords
@@ -139,7 +145,6 @@
 (setq vc-handled-backends ())
 ;(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
 
-(setq clojure-enable-paredit t)
 ;;set window to maximize
 (add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030)))
 
@@ -149,7 +154,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "180adb18379d7720859b39124cb6a79b4225d28cef4bfcf4ae2702b199a274c8" default))))
+ '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-enabled-themes (quote (wheatgrass)))
+ '(custom-safe-themes (quote ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "180adb18379d7720859b39124cb6a79b4225d28cef4bfcf4ae2702b199a274c8" default)))
+ '(fci-rule-color "#383838")
+ '(linum-format "%3i")
+ '(powerline-color1 "#3d3d68")
+ '(powerline-color2 "#292945")
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map (quote ((20 . "#BC8383") (40 . "#CC9393") (60 . "#DFAF8F") (80 . "#D0BF8F") (100 . "#E0CF9F") (120 . "#F0DFAF") (140 . "#5F7F5F") (160 . "#7F9F7F") (180 . "#8FB28F") (200 . "#9FC59F") (220 . "#AFD8AF") (240 . "#BFEBBF") (260 . "#93E0E3") (280 . "#6CA0A3") (300 . "#7CB8BB") (320 . "#8CD0D3") (340 . "#94BFF3") (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -158,7 +172,7 @@
  )
 
 
-(load-theme 'zenburn t)
+(load-theme 'wheatgrass t)
 
 
 (ido-mode t)
