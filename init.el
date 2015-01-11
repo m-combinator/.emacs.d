@@ -22,7 +22,6 @@
 		    color-theme
 		    assemblage-theme
 		    zenburn-theme
-		    php-mode
 		    python-mode))
 
 (dolist (package my-packages)
@@ -47,19 +46,17 @@
 
 
 
-(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
-
 ;; I don't know how to do multiline comments in emacs, boo
 (defmacro comment (&rest code)
   "comment macro similar to clojure's comment macro"
   nil)
 
 
-;; so the cider repl can start
-(setenv "PATH" (concat (getenv "PATH") ":C:/.lein/bin/"))
-(setq exec-path (append exec-path '("C:/.lein/bin/")))
+
+(comment
+ ;; so the cider repl can start
+ (setenv "PATH" (concat (getenv "PATH") ":C:/.lein/bin/"))
+ (setq exec-path (append exec-path '("C:/.lein/bin/"))))
 
 ;;Some hooks
 
@@ -114,11 +111,6 @@
  (setq cider-repl-print-length 100)
  (add-hook 'cider-repl-mode-hook 'paredit-mode))
 
-(eval-after-load 'php-mode
-  '(progn
-     (add-hook 'php-mode-hook (lambda ()
-				(paredit-mode t)
-				(local-set-key (kbd "RET") 'newline-and-indent)))))
 
 (eval-after-load 'clojure-mode
   '(progn
@@ -145,8 +137,9 @@
 (setq vc-handled-backends ())
 ;(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
 
-;;set window to maximize
-(add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030)))
+(comment
+ ;;set window to maximize, only on windows
+ (add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030))))
 
 
 (custom-set-variables
