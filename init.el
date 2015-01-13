@@ -193,8 +193,11 @@
  (defun toggle-transparency ()
    (interactive)
    (let ((param (cadr (frame-parameter nil 'alpha))))
-     (if (and param (/= param 100))
+v     (if (and param (/= param 100))
 	 (set-frame-parameter nil 'alpha '(100 100))
        (set-frame-parameter nil 'alpha '(85 50)))))
 
  (global-set-key (kbd "C-c t") 'toggle-transparency))
+
+;; require newline endings after editing files
+(setq require-final-newline t)
