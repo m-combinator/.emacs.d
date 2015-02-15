@@ -176,7 +176,7 @@
 
 ;;turn on line numbers
 (global-linum-mode t)
-
+(setq column-number-mode t)
 ;;those look nasty, so let's remove em
 (when window-system
   (scroll-bar-mode -1)
