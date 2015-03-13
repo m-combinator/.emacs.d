@@ -55,10 +55,6 @@
   nil)
 
 
-;; so the cider repl can start
-;(setenv "PATH" (concat (getenv "PATH") ":C:/.lein/bin/"))
-;(setq exec-path (append exec-path '("C:/.lein/bin/")))
-
 ;;Some hooks
 
 (show-paren-mode t)
@@ -123,8 +119,6 @@
  (setq cider-repl-print-length 100)
  (add-hook 'cider-repl-mode-hook 'paredit-mode))
 
-
-
 (eval-after-load 'clojure-mode
   '(progn
      (setq clojure-mode-use-backtracking-indent t)
@@ -149,10 +143,6 @@
 ;;disable vc-git
 (setq vc-handled-backends ())
 ;(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
-
-;;set window to maximize
-;(add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030)))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -188,7 +178,7 @@
 
 ;;turn on line numbers
 (global-linum-mode t)
-
+(setq column-number-mode t)
 ;;those look nasty, so let's remove em
 (when window-system
   (scroll-bar-mode -1)
@@ -205,8 +195,11 @@
  (defun toggle-transparency ()
    (interactive)
    (let ((param (cadr (frame-parameter nil 'alpha))))
-     (if (and param (/= param 100))
+v     (if (and param (/= param 100))
 	 (set-frame-parameter nil 'alpha '(100 100))
        (set-frame-parameter nil 'alpha '(85 50)))))
 
  (global-set-key (kbd "C-c t") 'toggle-transparency))
+
+;; require newline endings after editing files
+(setq require-final-newline t)
