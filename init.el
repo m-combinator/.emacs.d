@@ -1,4 +1,4 @@
-(require 'package)
+﻿(require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
@@ -22,8 +22,10 @@
 		    color-theme
 		    assemblage-theme
 		    zenburn-theme
-		    php-mode
-		    python-mode))
+		    python-mode
+		    flycheck
+		    editorconfig
+		    slime))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
@@ -47,10 +49,6 @@
 
 
 
-(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
-
 ;; I don't know how to do multiline comments in emacs, boo
 (defmacro comment (&rest code)
   "comment macro similar to clojure's comment macro"
@@ -58,8 +56,8 @@
 
 
 ;; so the cider repl can start
-(setenv "PATH" (concat (getenv "PATH") ":C:/.lein/bin/"))
-(setq exec-path (append exec-path '("C:/.lein/bin/")))
+;(setenv "PATH" (concat (getenv "PATH") ":C:/.lein/bin/"))
+;(setq exec-path (append exec-path '("C:/.lein/bin/")))
 
 ;;Some hooks
 
@@ -78,6 +76,7 @@
 			     (paredit-mode t)))
 
 (add-hook 'lisp-mode-hook  (lambda ()
+			     (slime-mode t)
 			     (local-set-key (kbd "RET") 'newline-and-indent)
 			     (pretty-lambda-mode t)
 			     (paredit-mode t)))
@@ -92,10 +91,20 @@
 			      (pretty-lambda-mode t)
 			      (paredit-mode t)))
 
+
+;(require 'flymake-python-pyflakes)
+
+;(add-hook 'after-init-hook #'global-flycheck-mode)
+;(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+;(setq flymake-python-pyflakes-executable "flake8")
+;(setq flymake-mode 1)
 (add-hook 'python-mode-hook (lambda ()
+			      (flycheck-mode t)
+			      (setq flycheck-flake8rc "~/Projects/fer2etak/setup.cfg")
+			      (setq flycheck-flake8-maximum-line-length nil)
+			      (setq flycheck-flake8-maximum-complexity nil)
 			      (local-set-key (kbd "RET") 'newline-and-indent)
-			      (pretty-lambda-mode t)
-			      (paredit-mode t)))
+			      (pretty-lambda-mode t)))
 
 (autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
@@ -114,11 +123,7 @@
  (setq cider-repl-print-length 100)
  (add-hook 'cider-repl-mode-hook 'paredit-mode))
 
-(eval-after-load 'php-mode
-  '(progn
-     (add-hook 'php-mode-hook (lambda ()
-				(paredit-mode t)
-				(local-set-key (kbd "RET") 'newline-and-indent)))))
+
 
 (eval-after-load 'clojure-mode
   '(progn
@@ -146,7 +151,7 @@
 ;(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
 
 ;;set window to maximize
-(add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030)))
+;(add-hook 'after-init-hook (lambda () (w32-send-sys-command #xf030)))
 
 
 (custom-set-variables
