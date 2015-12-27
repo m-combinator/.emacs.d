@@ -26,7 +26,9 @@
                     flycheck
                     editorconfig
                     slime
-                    linear-undo))
+                    linear-undo
+                    jedi
+                    auto-complete))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
@@ -98,13 +100,18 @@
                                         ;(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
                                         ;(setq flymake-python-pyflakes-executable "flake8")
                                         ;(setq flymake-mode 1)
+(require 'auto-complete)
+(global-auto-complete-mode t)
+
+(require 'jedi)
 (add-hook 'python-mode-hook (lambda ()
+                              (jedi:setup)
                               (flycheck-mode t)
-                              (setq flycheck-flake8rc "~/Projects/fer2etak/setup.cfg")
-                              (setq flycheck-flake8-maximum-line-length nil)
-                              (setq flycheck-flake8-maximum-complexity nil)
                               (local-set-key (kbd "RET") 'newline-and-indent)
                               (pretty-lambda-mode t)))
+
+(setq jedi:complete-on-dot t)
+
 
 (autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
