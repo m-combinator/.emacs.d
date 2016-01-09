@@ -5,8 +5,6 @@
 (package-initialize)
 
 
-
-
 (setq my-packages '(cider
                     buffer-move
                     persistent-soft
@@ -22,11 +20,8 @@
                     color-theme
                     assemblage-theme
                     zenburn-theme
-                    python-mode
                     flycheck
-                    editorconfig
                     slime
-                    linear-undo
                     jedi
                     auto-complete))
 
@@ -37,10 +32,6 @@
 
 ;; default buffer is *scratch*
 (setq initial-buffer-choice t)
-
-(require 'linear-undo)
-(linear-undo-mode t)
-
 
 (require 'buffer-move)
 
@@ -159,16 +150,41 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-enabled-themes (quote (wheatgrass)))
- '(custom-safe-themes (quote ("f641bdb1b534a06baa5e05ffdb5039fb265fde2764fbfd9a90b0d23b75f3936b" "f0d8af755039aa25cd0792ace9002ba885fd14ac8e8807388ab00ec84c9497d7" "617219c11282b84761477059b9339da78ce392c974d9308535ee4ec8c0770bee" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "f3278046d89cd5bc16fbe006a9fdec1d20b4466f12d5e80ee7a92dd4a34ff886" "e83c94a6bfab82536cef63610ec58d08dfddd27752d860763055daf58d028aad" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "180adb18379d7720859b39124cb6a79b4225d28cef4bfcf4ae2702b199a274c8" default)))
+ '(custom-safe-themes
+   (quote
+    ("f641bdb1b534a06baa5e05ffdb5039fb265fde2764fbfd9a90b0d23b75f3936b" "f0d8af755039aa25cd0792ace9002ba885fd14ac8e8807388ab00ec84c9497d7" "617219c11282b84761477059b9339da78ce392c974d9308535ee4ec8c0770bee" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "f3278046d89cd5bc16fbe006a9fdec1d20b4466f12d5e80ee7a92dd4a34ff886" "e83c94a6bfab82536cef63610ec58d08dfddd27752d860763055daf58d028aad" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "180adb18379d7720859b39124cb6a79b4225d28cef4bfcf4ae2702b199a274c8" default)))
  '(fci-rule-color "#383838")
  '(linum-format "%3i")
+ '(paradox-github-token t)
  '(powerline-color1 "#3d3d68")
  '(powerline-color2 "#292945")
- '(tab-stop-list (quote (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
+ '(tab-stop-list
+   (quote
+    (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
  '(vc-annotate-background "#2B2B2B")
- '(vc-annotate-color-map (quote ((20 . "#BC8383") (40 . "#CC9393") (60 . "#DFAF8F") (80 . "#D0BF8F") (100 . "#E0CF9F") (120 . "#F0DFAF") (140 . "#5F7F5F") (160 . "#7F9F7F") (180 . "#8FB28F") (200 . "#9FC59F") (220 . "#AFD8AF") (240 . "#BFEBBF") (260 . "#93E0E3") (280 . "#6CA0A3") (300 . "#7CB8BB") (320 . "#8CD0D3") (340 . "#94BFF3") (360 . "#DC8CC3"))))
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
  '(vc-annotate-very-old-color "#DC8CC3"))
 
 
