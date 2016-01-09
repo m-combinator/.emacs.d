@@ -23,7 +23,8 @@
                     flycheck
                     slime
                     jedi
-                    auto-complete))
+                    auto-complete
+                    paradox))
 
 (dolist (package my-packages)
   (unless (package-installed-p package)
