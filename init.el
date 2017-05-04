@@ -1,8 +1,10 @@
-﻿(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
-(package-initialize)
+﻿(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("marmalade" . "http://marmalade-repo.org/packages/")
+                           ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
+  (package-refresh-contents))
 
 
 (setq my-packages '(cider
@@ -159,6 +161,9 @@
     ("f641bdb1b534a06baa5e05ffdb5039fb265fde2764fbfd9a90b0d23b75f3936b" "f0d8af755039aa25cd0792ace9002ba885fd14ac8e8807388ab00ec84c9497d7" "617219c11282b84761477059b9339da78ce392c974d9308535ee4ec8c0770bee" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "f3278046d89cd5bc16fbe006a9fdec1d20b4466f12d5e80ee7a92dd4a34ff886" "e83c94a6bfab82536cef63610ec58d08dfddd27752d860763055daf58d028aad" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "180adb18379d7720859b39124cb6a79b4225d28cef4bfcf4ae2702b199a274c8" default)))
  '(fci-rule-color "#383838")
  '(linum-format "%3i")
+ '(package-selected-packages
+   (quote
+    (paradox jedi slime flycheck zenburn-theme assemblage-theme color-theme bubbleberry-theme rainbow-delimiters pretty-lambdada paredit ido-yes-or-no ido-ubiquitous ido-select-window ido-load-library ido-better-flex persistent-soft buffer-move cider)))
  '(paradox-github-token t)
  '(powerline-color1 "#3d3d68")
  '(powerline-color2 "#292945")
